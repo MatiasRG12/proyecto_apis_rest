@@ -3,7 +3,7 @@ package co.edu.uniquindio.apis.dtos;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
-public record User(
+public record UserResponseDTO(
 
         @NotBlank(message = "ID cannot be empty")
         String id,
@@ -11,6 +11,4 @@ public record User(
         @Email(message = "valid email required")
         String email,
         LocalDate createdAt
-) {
-
-}
+) {}
