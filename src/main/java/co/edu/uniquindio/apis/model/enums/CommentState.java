@@ -2,11 +2,11 @@ package co.edu.uniquindio.apis.model.enums;
 
 public enum CommentState {
 
-    ABIERTO("Abierto"),
-    CERRADO("Cerrado");
+    OPEN("Open"),
+    RESOLVED("Resolved");
 
 
-    CommentState(String abierto) {
+    CommentState(String status) {
     }
 
 }
