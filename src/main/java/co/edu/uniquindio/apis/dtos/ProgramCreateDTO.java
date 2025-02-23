@@ -10,7 +10,6 @@ import co.edu.uniquindio.apis.model.Comment;
 
 
 public record ProgramCreateDTO(
-    UUID id,
 
     @NotBlank(message = "Title is required")
     @Size(max = 100, message = "Title must not exceed 100 characters")
@@ -24,7 +23,7 @@ public record ProgramCreateDTO(
     String content,
 
     @NotNull(message = "Creator ID is required")
-    UUID creatorId,
+    String creatorId,
 
     List<Comment> comments,
 

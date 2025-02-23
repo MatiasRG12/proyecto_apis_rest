@@ -1,7 +1,7 @@
 package co.edu.uniquindio.apis.resources;
 
 import co.edu.uniquindio.apis.model.Comment;
-import co.edu.uniquindio.apis.model.CommentStatus;
+import co.edu.uniquindio.apis.model.enums.CommentState;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -40,7 +40,7 @@ public class CommentResource {
     @Path("/resolve/{id}")
     public Response resolveComment(@PathParam("id") UUID id) {
         Comment comment = new Comment(); 
-        comment.setStatus(CommentStatus.RESOLVED);
+        comment.setState(CommentState.RESOLVED);
         return Response.ok(comment).build();
     }
 }

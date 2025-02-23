@@ -4,12 +4,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 import co.edu.uniquindio.apis.model.Comment;
 
-public class ProgramResponseDTO {
-    String id;
-    String title;
-    String description;
-    String content;
-    String creatorId;
-    List<Comment> comments;
-    LocalDateTime creationDate;
+public record ProgramResponseDTO (
+
+        String id,
+        String title,
+        String description,
+        String content,
+        String creatorId,
+        List<Comment> comments,
+        LocalDateTime creationDate
+
+){
+
 }
