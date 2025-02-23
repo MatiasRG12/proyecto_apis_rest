@@ -2,16 +2,18 @@ package co.edu.uniquindio.apis.dtos;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import co.edu.uniquindio.apis.model.Comment;
 
-public record ProgramResponseDTO(
+public record ProgramResponseDTO (
 
-    String id,
-    String tittle,
-    String description,
-    String content,
-    String authorId,
-    List<CommentDTO> commets,
-    LocalDateTime creationDate
+        String id,
+        String title,
+        String description,
+        String content,
+        String creatorId,
+        List<Comment> comments,
+        LocalDateTime creationDate
 
-) {
+){
+
 }

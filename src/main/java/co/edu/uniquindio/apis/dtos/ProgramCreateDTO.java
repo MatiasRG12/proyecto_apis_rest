@@ -1,15 +1,31 @@
 package co.edu.uniquindio.apis.dtos;
 
+import jakarta.validation.constraints.*;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+
+import co.edu.uniquindio.apis.model.Comment;
+
+
+
 public record ProgramCreateDTO(
 
-    //id automatico
+    @NotBlank(message = "Title is required")
+    @Size(max = 100, message = "Title must not exceed 100 characters")
     String title,
+
+    @NotBlank(message = "Description is required")
+    @Size(max = 500, message = "Description must not exceed 500 characters")
     String description,
+
+    @NotBlank(message = "Content is required")
     String content,
-    String authorId //revisar si se deja String
-    //cuando se crea aun no tiene comentarios
-    //fecha automatica
 
-) {
+    @NotNull(message = "Creator ID is required")
+    String creatorId,
 
-}
+    List<Comment> comments,
+
+    LocalDateTime creationDate
+) {}

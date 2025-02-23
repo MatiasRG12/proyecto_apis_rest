@@ -13,7 +13,7 @@ public class Program {
     private String title;
     private String description;
     private String content;
-    private UUID authorId;
+    private UUID creatorId;
     private List<Comment> comments;
     private LocalDateTime creationDate;
 

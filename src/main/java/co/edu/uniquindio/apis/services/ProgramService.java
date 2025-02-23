@@ -7,7 +7,7 @@ import co.edu.uniquindio.apis.dtos.ProgramResponseDTO;
 import java.util.List;
 
 public interface ProgramService {
-    Object createProgram(ProgramCreateDTO programCreateDTO);
+    boolean createProgram(ProgramCreateDTO programCreateDTO);
 
     List<ProgramResponseDTO> getAllPrograms();
 
@@ -16,7 +16,7 @@ public interface ProgramService {
     ProgramResponseDTO getById(String id);
 
 
-    Object updateProgram(String id, ProgramCreateDTO programCreateDTO);
+    boolean updateProgram(String id, ProgramCreateDTO programCreateDTO);
 
-    Object deleteProgram(String id);
+    boolean deleteProgram(String id);
 }

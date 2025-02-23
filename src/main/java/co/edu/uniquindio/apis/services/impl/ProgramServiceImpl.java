@@ -3,21 +3,35 @@ package co.edu.uniquindio.apis.services.impl;
 import co.edu.uniquindio.apis.dtos.CommentDTO;
 import co.edu.uniquindio.apis.dtos.ProgramCreateDTO;
 import co.edu.uniquindio.apis.dtos.ProgramResponseDTO;
+import co.edu.uniquindio.apis.model.Program;
 import co.edu.uniquindio.apis.services.ProgramService;
 import jakarta.enterprise.context.ApplicationScoped;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @ApplicationScoped
 public class ProgramServiceImpl implements ProgramService {
 
+    private List<Program> programs = new ArrayList<>();
+
     @Override
-    public Object createProgram(ProgramCreateDTO programCreateDTO) {
-        return null;
+    public boolean createProgram(ProgramCreateDTO programCreateDTO) {
+        Program program = new Program();
+        program.setId(UUID.randomUUID());
+        program.setTitle(programCreateDTO.title());
+        program.setDescription(programCreateDTO.description());
+        program.setContent(programCreateDTO.content());
+        //program.setCreatorId(programCreateDTO.creatorId());
+        program.setComments(new ArrayList<>());
+        program.setCreationDate(programCreateDTO.creationDate());
+        programs.add(program);
+        return true;
     }
 
     @Override
-    public List<ProgramResponseDTO> getAllPrograms() {
+    public List<ProgramResponseDTO> getAllPrograms() { //puede estar ordenado por orden de creacion
         return List.of();
     }
 
@@ -28,17 +42,37 @@ public class ProgramServiceImpl implements ProgramService {
 
     @Override
     public ProgramResponseDTO getById(String id) {
-        return null;
+        return programs.stream()
+                .filter(program -> program.getId().toString().equals(id)) // Filtra por ID
+                .map(program -> new ProgramResponseDTO(
+                        program.getId().toString(),
+                        program.getTitle(),
+                        program.getDescription(),
+                        program.getContent(),
+                        program.getCreatorId().toString(),
+                        program.getComments(), // Lista de comentarios
+                        program.getCreationDate()
+                ))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
-    public Object updateProgram(String id, ProgramCreateDTO programCreateDTO) {
-        return null;
+    public boolean updateProgram(String id, ProgramCreateDTO programCreateDTO) {
+//        Program program = getById(id);
+//        if (program != null) {
+//            program.setTitle(programCreateDTO.title());
+//            program.setDescription(programCreateDTO.description());
+//            program.setContent(programCreateDTO.content());
+//            program.setCreatorId(programCreateDTO.creatorId());
+//            program.setCreationDate(programCreateDTO.creationDate());
+//        }
+        return true;
     }
 
     @Override
-    public Object deleteProgram(String id) {
-        return null;
+    public boolean deleteProgram(String id) {
+        return programs.removeIf(program -> program.getId().equals(id));
     }
 
 
