@@ -9,11 +9,11 @@ import java.util.UUID;
 @Data
 public class Program {
 
-    private UUID id;
+    private String id;
     private String title;
     private String description;
     private String content;
-    private UUID creatorId;
+    private String creatorId;
     private List<Comment> comments;
     private LocalDateTime creationDate;
 

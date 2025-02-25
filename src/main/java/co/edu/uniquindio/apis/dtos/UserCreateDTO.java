@@ -17,10 +17,5 @@ public record UserCreateDTO(
 
         @NotBlank(message = "El campo es requerido")
         @Size(max = 100, message = "No debe exceder los 100 caracteres")
-        String fullName,
-
-        @NotNull(message = "La fecha no puede ser nula")
-        @PastOrPresent(message = "La fecha no puede ser futura")
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-        LocalDate dateBirth
+        String fullName
 ) {}

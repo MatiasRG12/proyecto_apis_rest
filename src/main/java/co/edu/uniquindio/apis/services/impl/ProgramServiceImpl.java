@@ -19,7 +19,7 @@ public class ProgramServiceImpl implements ProgramService {
     @Override
     public boolean createProgram(ProgramCreateDTO programCreateDTO) {
         Program program = new Program();
-        program.setId(UUID.randomUUID());
+        program.setId(UUID.randomUUID().toString());
         program.setTitle(programCreateDTO.title());
         program.setDescription(programCreateDTO.description());
         program.setContent(programCreateDTO.content());
@@ -43,13 +43,13 @@ public class ProgramServiceImpl implements ProgramService {
     @Override
     public ProgramResponseDTO getById(String id) {
         return programs.stream()
-                .filter(program -> program.getId().toString().equals(id)) // Filtra por ID
+                .filter(program -> program.getId().equals(id)) // Filtra por ID
                 .map(program -> new ProgramResponseDTO(
-                        program.getId().toString(),
+                        program.getId(),
                         program.getTitle(),
                         program.getDescription(),
                         program.getContent(),
-                        program.getCreatorId().toString(),
+                        program.getCreatorId(),
                         program.getComments(), // Lista de comentarios
                         program.getCreationDate()
                 ))

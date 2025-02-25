@@ -8,8 +8,8 @@ import java.util.UUID;
 @Data
 public class Comment {
 
-    private UUID id;
-    private UUID authorId;
+    private String id;
+    private String authorId;
     private String content;
     private CommentState state;
 
