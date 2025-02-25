@@ -5,21 +5,21 @@ import java.util.List;
 import java.util.UUID;
 
 public class Example {
-    private UUID id;
+    private String id;
     private String title;
     private String description;
     private String content;
-    private UUID creatorId;
+    private String creatorId;
     private List<String> tags;
     private String difficulty;
     private LocalDateTime creationDate;
 
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,11 +47,11 @@ public class Example {
         this.content = content;
     }
 
-    public UUID getCreatorId() {
+    public String getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(UUID creatorId) {
+    public void setCreatorId(String creatorId) {
         this.creatorId = creatorId;
     }
 

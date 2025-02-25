@@ -16,11 +16,11 @@ public class ExampleService {
 
     public ExampleResponseDTO createExample(ExampleCreateDTO exampleCreateDTO) {
         Example example = new Example();
-        example.setId(UUID.randomUUID());
+        example.setId(UUID.randomUUID().toString());
         example.setTitle(exampleCreateDTO.title());
         example.setDescription(exampleCreateDTO.description());
         example.setContent(exampleCreateDTO.content());
-        example.setCreatorId(UUID.fromString(exampleCreateDTO.creatorId()));
+        example.setCreatorId(exampleCreateDTO.creatorId());
         example.setTags(exampleCreateDTO.tags());
         example.setDifficulty(exampleCreateDTO.difficulty());
         example.setCreationDate(LocalDateTime.now());
@@ -28,11 +28,11 @@ public class ExampleService {
         examples.add(example);
 
         return new ExampleResponseDTO(
-                example.getId().toString(),
+                example.getId(),
                 example.getTitle(),
                 example.getDescription(),
                 example.getContent(),
-                example.getCreatorId().toString(),
+                example.getCreatorId(),
                 example.getTags(),
                 example.getDifficulty(),
                 example.getCreationDate()
@@ -42,11 +42,11 @@ public class ExampleService {
     public List<ExampleResponseDTO> listExamples() {
         return examples.stream()
                 .map(example -> new ExampleResponseDTO(
-                        example.getId().toString(),
+                        example.getId(),
                         example.getTitle(),
                         example.getDescription(),
                         example.getContent(),
-                        example.getCreatorId().toString(),
+                        example.getCreatorId(),
                         example.getTags(),
                         example.getDifficulty(),
                         example.getCreationDate()
@@ -56,14 +56,14 @@ public class ExampleService {
 
     public ExampleResponseDTO getExampleById(String id) {
         return examples.stream()
-                .filter(example -> example.getId().toString().equals(id))
+                .filter(example -> example.getId().equals(id))
                 .findFirst()
                 .map(example -> new ExampleResponseDTO(
-                        example.getId().toString(),
+                        example.getId(),
                         example.getTitle(),
                         example.getDescription(),
                         example.getContent(),
-                        example.getCreatorId().toString(),
+                        example.getCreatorId(),
                         example.getTags(),
                         example.getDifficulty(),
                         example.getCreationDate()
@@ -73,7 +73,7 @@ public class ExampleService {
 
     public ExampleResponseDTO updateExample(String id, ExampleCreateDTO exampleCreateDTO) {
         Example example = examples.stream()
-                .filter(e -> e.getId().toString().equals(id))
+                .filter(e -> e.getId().equals(id))
                 .findFirst()
                 .orElse(null);
 
@@ -85,11 +85,11 @@ public class ExampleService {
             example.setDifficulty(exampleCreateDTO.difficulty());
 
             return new ExampleResponseDTO(
-                    example.getId().toString(),
+                    example.getId(),
                     example.getTitle(),
                     example.getDescription(),
                     example.getContent(),
-                    example.getCreatorId().toString(),
+                    example.getCreatorId(),
                     example.getTags(),
                     example.getDifficulty(),
                     example.getCreationDate()
@@ -100,6 +100,6 @@ public class ExampleService {
     }
 
     public boolean deleteExample(String id) {
-        return examples.removeIf(example -> example.getId().toString().equals(id));
+        return examples.removeIf(example -> example.getId().equals(id));
     }
 }
