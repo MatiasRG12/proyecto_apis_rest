@@ -1,7 +1,7 @@
-package co.edu.uniquindio.apis.exceptions.mappers;
+package co.edu.uniquindio.apis.mappers.exceptionMappers;
 
 import co.edu.uniquindio.apis.dtos.error.ErrorResponseDTO;
-import co.edu.uniquindio.apis.exceptions.exceptions.EntityNotFoundException;
+import co.edu.uniquindio.apis.exceptions.EntityNotFoundException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;

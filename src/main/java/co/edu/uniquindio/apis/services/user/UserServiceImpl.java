@@ -1,9 +1,8 @@
 package co.edu.uniquindio.apis.services.user;
 
 import co.edu.uniquindio.apis.dtos.*;
-import co.edu.uniquindio.apis.exceptions.exceptions.EntityNotFoundException;
-import co.edu.uniquindio.apis.exceptions.exceptions.UnexpectedErrorException;
-import co.edu.uniquindio.apis.exceptions.exceptions.ValidationException;
+import co.edu.uniquindio.apis.exceptions.EntityNotFoundException;
+import co.edu.uniquindio.apis.exceptions.ValidationException;
 import co.edu.uniquindio.apis.mappers.domainMappers.UserMapper;
 import co.edu.uniquindio.apis.model.User;
 import co.edu.uniquindio.apis.repositories.user.UserRepository;
@@ -11,7 +10,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -35,8 +33,6 @@ public class UserServiceImpl implements UserService {
     public List<UserResponseDTO> GetAllUsers(int offset, int limit) {
         var users = userRepository.findAll().range(offset, offset + limit);
         return users.stream().map(userMapper::toUserResponseDTO).collect(Collectors.toList());
-
-
     }
 
 

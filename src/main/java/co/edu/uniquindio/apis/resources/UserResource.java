@@ -1,15 +1,13 @@
 package co.edu.uniquindio.apis.resources;
 
 import co.edu.uniquindio.apis.dtos.*;
-import co.edu.uniquindio.apis.exceptions.exceptions.UnexpectedErrorException;
+import co.edu.uniquindio.apis.exceptions.UnexpectedErrorException;
 import co.edu.uniquindio.apis.services.user.UserService;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
-
-import java.util.UUID;
 
 @Path("/users")
 @Consumes(MediaType.APPLICATION_JSON)

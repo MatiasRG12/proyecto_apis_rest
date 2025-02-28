@@ -1,4 +1,4 @@
-package co.edu.uniquindio.apis.exceptions.exceptions;
+package co.edu.uniquindio.apis.exceptions;
 
 public class EntityNotFoundException extends RuntimeException {
     public EntityNotFoundException(String message) {

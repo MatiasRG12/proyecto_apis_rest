@@ -3,11 +3,12 @@ package co.edu.uniquindio.apis.services.program;
 import co.edu.uniquindio.apis.dtos.CommentDTO;
 import co.edu.uniquindio.apis.dtos.ProgramCreateDTO;
 import co.edu.uniquindio.apis.dtos.ProgramResponseDTO;
+import co.edu.uniquindio.apis.dtos.ProgramUpdateRequestDTO;
 
 import java.util.List;
 
 public interface ProgramService {
-    boolean createProgram(ProgramCreateDTO programCreateDTO);
+    ProgramResponseDTO createProgram(ProgramCreateDTO programCreateDTO);
 
     List<ProgramResponseDTO> getAllPrograms();
 
@@ -15,8 +16,7 @@ public interface ProgramService {
     
     ProgramResponseDTO getById(String id);
 
-
-    boolean updateProgram(String id, ProgramCreateDTO programCreateDTO);
+    ProgramResponseDTO updateProgram(ProgramUpdateRequestDTO programUpdateRequestDTO);
 
     boolean deleteProgram(String id);
 }

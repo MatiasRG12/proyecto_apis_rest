@@ -1,7 +1,7 @@
-package co.edu.uniquindio.apis.exceptions.mappers;
+package co.edu.uniquindio.apis.mappers.exceptionMappers;
 
 import co.edu.uniquindio.apis.dtos.error.ErrorResponseDTO;
-import co.edu.uniquindio.apis.exceptions.exceptions.UnauthorizedException;
+import co.edu.uniquindio.apis.exceptions.UnauthorizedException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;

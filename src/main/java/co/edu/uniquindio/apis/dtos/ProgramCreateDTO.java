@@ -25,7 +25,5 @@ public record ProgramCreateDTO(
     @NotNull(message = "Creator ID is required")
     String creatorId,
 
-    List<Comment> comments,
-
-    LocalDateTime creationDate
+    List<Comment> comments
 ) {}
