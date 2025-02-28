@@ -2,7 +2,7 @@ package co.edu.uniquindio.apis.resources;
 
 import co.edu.uniquindio.apis.dtos.ExampleCreateDTO;
 import co.edu.uniquindio.apis.dtos.ExampleResponseDTO;
-import co.edu.uniquindio.apis.services.ExampleService;
+import co.edu.uniquindio.apis.services.example.ExampleService;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;

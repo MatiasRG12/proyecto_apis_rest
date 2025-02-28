@@ -1,4 +1,4 @@
-package co.edu.uniquindio.apis.services;
+package co.edu.uniquindio.apis.services.program;
 
 import co.edu.uniquindio.apis.dtos.CommentDTO;
 import co.edu.uniquindio.apis.dtos.ProgramCreateDTO;

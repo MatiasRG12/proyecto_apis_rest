@@ -17,6 +17,12 @@ dependencies {
     implementation 'io.quarkus:quarkus-smallrye-openapi'
     implementation 'io.quarkus:quarkus-hibernate-validator'
     implementation 'io.quarkus:quarkus-rest-jackson'
+    implementation 'io.quarkus:quarkus-hibernate-orm-rest-data-panache:3.18.4'
+    implementation 'io.quarkus:quarkus-jdbc-postgresql:3.18.4'
+    implementation 'io.quarkus:quarkus-hibernate-orm-panache:3.18.4'
+    implementation 'io.quarkus:quarkus-elytron-security-jdbc:3.18.4' /////
+    implementation 'org.mapstruct:mapstruct:1.6.3'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
 
     //para evitar escribir getters y setters
     compileOnly 'org.projectlombok:lombok:1.18.30'

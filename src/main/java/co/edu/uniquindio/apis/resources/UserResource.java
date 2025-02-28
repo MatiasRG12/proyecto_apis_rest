@@ -1,80 +1,107 @@
 package co.edu.uniquindio.apis.resources;
 
 import co.edu.uniquindio.apis.dtos.*;
-import co.edu.uniquindio.apis.services.UserService;
-import jakarta.inject.Inject;
+import co.edu.uniquindio.apis.exceptions.exceptions.UnexpectedErrorException;
+import co.edu.uniquindio.apis.services.user.UserService;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import lombok.RequiredArgsConstructor;
 
-import java.util.List;
 import java.util.UUID;
 
 @Path("/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@RequiredArgsConstructor
 public class UserResource {
 
+    final UserService service;
 
-    @Inject
-    UserService userService;
 
     @GET
     @Path("/{id}")
-    public Response GetSingle(@PathParam("id")String id) {
-        var user = userService.GetUserById(id);
-        return Response.ok().entity(user).build();
+    public Response GetSingle(@PathParam("id") Long id) {
+        try{
+            var user = service.GetUserById(id);
+            return Response.ok().entity(user).build();
+        }catch (Exception e){
+            throw new UnexpectedErrorException("Unable to get user");
+        }
+
     }
 
     @GET
-    public Response GetAll() {
-        var users = userService.GetAllUsers();
-        return Response.ok().entity(users).build();
+    public Response GetAll(@QueryParam("offset") int offset, @QueryParam("limit") int limit) {
+        try{
+            var users = service.GetAllUsers(offset, limit);
+            return Response.ok().entity(users).build();
+        }catch (Exception e){
+            throw new UnexpectedErrorException("Unable to get users");
+        }
+
     }
 
     @POST
     public Response Create(@Valid UserCreateDTO userCreateDTO)
     {
-        var user = userService.CreateUser(userCreateDTO);
-        return Response.ok().entity(user).build();
+        try{
+            var user = service.CreateUser(userCreateDTO);
+            return Response.ok().entity(user).build();
+        }catch (Exception e){
+            throw new UnexpectedErrorException("Unable to create user");
+        }
+
     }
 
     @PUT
-    @Path("/{id}")
     public Response UpdateUser(@Valid UserUpdateRequestDTO userUpdateDTO)
     {
-        var user = userService.UpdateUser(userUpdateDTO);
-        return Response.ok().entity(user).build();
+        try{
+            var user = service.UpdateUser(userUpdateDTO);
+            return Response.ok().entity(user).build();
+        }catch (Exception e){
+            throw new UnexpectedErrorException("Unable to update user");
+        }
+
     }
 
     @DELETE
     @Path("/{id}")
-    public Response DeleteUser(@PathParam("id") String id)
+    public Response DeleteUser(@PathParam("id") Long id)
     {
-        var user = userService.DeleteUser(id);
-        return Response.ok().entity(user).build();
+        try{
+            var user = service.DeleteUser(id);
+            return Response.ok().entity(user).build();
+        }catch (Exception e){
+            throw new UnexpectedErrorException("Unable to delete user");
+        }
+
     }
 
     @POST
     @Path("/login")
     public Response LoginRequest (@Valid LoginRequestDTO loginRequest)
     {
-        if (loginRequest.email() == "guest@gmail.com" && loginRequest.password() == "guest"){
-            var response = new LoginResponseDTO(UUID.randomUUID().toString(), loginRequest.password());
-            return Response.ok(response).build();
+        try{
+            var login = service.Login(loginRequest);
+            return Response.ok().entity(login).build();
+        }catch (Exception e){
+            throw new UnexpectedErrorException("Unable to login");
         }
-        return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 
     @POST
     @Path("/verify")
     public Response VerifyAccount (@Valid AccountVerificationRequestDTO accountVerificationRequestDTO)
     {
-        if (accountVerificationRequestDTO.email() == "guest@gmail.com" && accountVerificationRequestDTO.verificationCode() == 1122){
-            return Response.ok().entity(true).build();
+        try{
+            service.VerifyAccount(accountVerificationRequestDTO);
+            return Response.ok().build();
+        }catch (Exception e){
+            throw new UnexpectedErrorException("Unable to verify account");
         }
-        return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 
 

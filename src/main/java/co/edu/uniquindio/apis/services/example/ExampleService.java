@@ -1,4 +1,4 @@
-package co.edu.uniquindio.apis.services;
+package co.edu.uniquindio.apis.services.example;
 
 import co.edu.uniquindio.apis.dtos.ExampleCreateDTO;
 import co.edu.uniquindio.apis.dtos.ExampleResponseDTO;

@@ -1,21 +1,21 @@
-package co.edu.uniquindio.apis.services;
+package co.edu.uniquindio.apis.services.user;
 
 import co.edu.uniquindio.apis.dtos.*;
 
 import java.util.List;
 
 public interface UserService {
-    boolean CreateUser(UserCreateDTO userCreateDTO);
+    UserResponseDTO CreateUser(UserCreateDTO userCreateDTO);
 
-    List<UserResponseDTO> GetAllUsers();
+    List<UserResponseDTO> GetAllUsers(int offset, int limit);
 
 
-    UserResponseDTO GetUserById(String id);
+    UserResponseDTO GetUserById(Long id);
 
 
     boolean UpdateUser(UserUpdateRequestDTO updateRequestDTO);
 
-    boolean DeleteUser(String id);
+    boolean DeleteUser(Long id);
 
     LoginResponseDTO Login(LoginRequestDTO loginRequestDTO);
 

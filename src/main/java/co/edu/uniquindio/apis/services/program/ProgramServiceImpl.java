@@ -1,10 +1,9 @@
-package co.edu.uniquindio.apis.services.impl;
+package co.edu.uniquindio.apis.services.program;
 
 import co.edu.uniquindio.apis.dtos.CommentDTO;
 import co.edu.uniquindio.apis.dtos.ProgramCreateDTO;
 import co.edu.uniquindio.apis.dtos.ProgramResponseDTO;
 import co.edu.uniquindio.apis.model.Program;
-import co.edu.uniquindio.apis.services.ProgramService;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.ArrayList;
