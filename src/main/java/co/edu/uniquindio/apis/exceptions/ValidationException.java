@@ -1,4 +1,4 @@
-package co.edu.uniquindio.apis.exceptions.exceptions;
+package co.edu.uniquindio.apis.exceptions;
 
 public class ValidationException extends RuntimeException {
     public ValidationException(String message) {
