@@ -32,7 +32,7 @@ public class ExampleServiceImpl implements ExampleService {
         exampleRepository.persist(example);
 
         return new ExampleResponseDTO(
-                example.getId(),
+                example.getId(), // Aquí ya no necesitamos convertir a String
                 example.getTitle(),
                 example.getDescription(),
                 example.getContent(),
@@ -47,7 +47,7 @@ public class ExampleServiceImpl implements ExampleService {
     public List<ExampleResponseDTO> listExamples() {
         return exampleRepository.listAll().stream()
                 .map(example -> new ExampleResponseDTO(
-                        example.getId(),
+                        example.getId(), // Aquí ya no necesitamos convertir a String
                         example.getTitle(),
                         example.getDescription(),
                         example.getContent(),
@@ -64,7 +64,7 @@ public class ExampleServiceImpl implements ExampleService {
         Example example = exampleRepository.findById(id);
         if (example != null) {
             return new ExampleResponseDTO(
-                    example.getId(),
+                    example.getId(), // Aquí ya no necesitamos convertir a String
                     example.getTitle(),
                     example.getDescription(),
                     example.getContent(),
@@ -91,7 +91,7 @@ public class ExampleServiceImpl implements ExampleService {
             exampleRepository.persist(example);
 
             return new ExampleResponseDTO(
-                    example.getId(),
+                    example.getId(), // Aquí ya no necesitamos convertir a String
                     example.getTitle(),
                     example.getDescription(),
                     example.getContent(),

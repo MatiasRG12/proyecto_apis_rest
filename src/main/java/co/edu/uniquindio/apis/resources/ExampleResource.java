@@ -24,6 +24,19 @@ public class ExampleResource {
         return Response.status(Response.Status.CREATED).entity(exampleResponseDTO).build();
     }
 
+     /* Example request body (JSON)
+    {
+        "title": "Example 1",
+        "description": "The first example",
+        "content": "The content of the example",
+        "creatorId": "550e8400-e29b-41d4-a716-446655440000",
+        "tags": ["Example"],
+        "difficulty": "Medium"
+    }
+
+    URL: http://localhost:8080/examples
+     */
+
     @GET
     public List<ExampleResponseDTO> listExamples() {
         return exampleService.listExamples();
