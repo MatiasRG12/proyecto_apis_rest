@@ -1,25 +1,33 @@
 package co.edu.uniquindio.apis.model;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
+@Entity
+@Table(name = "example")
 public class Example {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String title;
     private String description;
     private String content;
     private String creatorId;
+
+    @ElementCollection
     private List<String> tags;
+
     private String difficulty;
     private LocalDateTime creationDate;
 
-
-    public String getId() {
+    // Getters y Setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

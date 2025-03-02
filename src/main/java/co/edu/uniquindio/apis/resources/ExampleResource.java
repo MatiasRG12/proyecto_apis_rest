@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
 import java.util.List;
 
 @Path("/examples")
@@ -25,19 +24,6 @@ public class ExampleResource {
         return Response.status(Response.Status.CREATED).entity(exampleResponseDTO).build();
     }
 
-    /* Example request body (JSON)
-    {
-        "title": "Example 1",
-        "description": "The first example",
-        "content": "The content of the example",
-        "creatorId": "550e8400-e29b-41d4-a716-446655440000",
-        "tags": ["Example"],
-        "difficulty": "Medium"
-    }
-
-    URL: http://localhost:8080/examples
-     */
-
     @GET
     public List<ExampleResponseDTO> listExamples() {
         return exampleService.listExamples();
@@ -45,7 +31,7 @@ public class ExampleResource {
 
     @GET
     @Path("/{id}")
-    public Response getExampleById(@PathParam("id") String id) {
+    public Response getExampleById(@PathParam("id") Long id) {
         ExampleResponseDTO exampleResponseDTO = exampleService.getExampleById(id);
         if (exampleResponseDTO != null) {
             return Response.ok(exampleResponseDTO).build();
@@ -56,7 +42,7 @@ public class ExampleResource {
 
     @PUT
     @Path("/{id}")
-    public Response updateExample(@PathParam("id") String id, @Valid ExampleCreateDTO exampleCreateDTO) {
+    public Response updateExample(@PathParam("id") Long id, @Valid ExampleCreateDTO exampleCreateDTO) {
         ExampleResponseDTO exampleResponseDTO = exampleService.updateExample(id, exampleCreateDTO);
         if (exampleResponseDTO != null) {
             return Response.ok(exampleResponseDTO).build();
@@ -67,7 +53,7 @@ public class ExampleResource {
 
     @DELETE
     @Path("/{id}")
-    public Response deleteExample(@PathParam("id") String id) {
+    public Response deleteExample(@PathParam("id") Long id) {
         boolean deleted = exampleService.deleteExample(id);
         if (deleted) {
             return Response.noContent().build();
