@@ -5,11 +5,14 @@ import co.edu.uniquindio.apis.exceptions.EntityNotFoundException;
 import co.edu.uniquindio.apis.exceptions.ValidationException;
 import co.edu.uniquindio.apis.mappers.domainMappers.UserMapper;
 import co.edu.uniquindio.apis.model.User;
+import co.edu.uniquindio.apis.model.enums.Role;
+import co.edu.uniquindio.apis.model.enums.UserState;
 import co.edu.uniquindio.apis.repositories.user.UserRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -24,15 +27,21 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public UserResponseDTO CreateUser(UserCreateDTO userCreateDTO) {
-            User user = userMapper.parseOf(userCreateDTO);
+            User user = userMapper.toEntity(userCreateDTO);
+            user.setCreationDate(LocalDateTime.now());
+            int code = (int) (Math.random() * 9000) + 1000;
+             user.setVerificationCode(code);
+             user.setCodeModificationDate(LocalDateTime.now());
+             user.setState(UserState.UNVERIFIED);
+             user.setRole(Role.ESTUDENT);
             userRepository.persist(user);
-            return userMapper.toUserResponseDTO(user);
+            return userMapper.toResponseDTO(user);
     }
 
     @Transactional
     public List<UserResponseDTO> GetAllUsers(int offset, int limit) {
         var users = userRepository.findAll().range(offset, offset + limit);
-        return users.stream().map(userMapper::toUserResponseDTO).collect(Collectors.toList());
+        return users.stream().map(userMapper::toResponseDTO).collect(Collectors.toList());
     }
 
 
@@ -44,7 +53,7 @@ public class UserServiceImpl implements UserService {
             throw new EntityNotFoundException("User not found");
         }
 
-        return userMapper.toUserResponseDTO(user);
+        return userMapper.toResponseDTO(user);
     }
 
 
