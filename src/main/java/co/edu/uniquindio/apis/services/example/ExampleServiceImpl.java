@@ -2,6 +2,7 @@ package co.edu.uniquindio.apis.services.example;
 
 import co.edu.uniquindio.apis.dtos.ExampleCreateDTO;
 import co.edu.uniquindio.apis.dtos.ExampleResponseDTO;
+import co.edu.uniquindio.apis.mappers.domainMappers.ExampleMapper;
 import co.edu.uniquindio.apis.model.Example;
 import co.edu.uniquindio.apis.repositories.example.ExampleRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -17,45 +18,22 @@ public class ExampleServiceImpl implements ExampleService {
     @Inject
     ExampleRepository exampleRepository;
 
+    @Inject
+    ExampleMapper exampleMapper;
+
     @Override
     @Transactional
     public ExampleResponseDTO createExample(ExampleCreateDTO exampleCreateDTO) {
-        Example example = new Example();
-        example.setTitle(exampleCreateDTO.title());
-        example.setDescription(exampleCreateDTO.description());
-        example.setContent(exampleCreateDTO.content());
-        example.setCreatorId(exampleCreateDTO.creatorId());
-        example.setTags(exampleCreateDTO.tags());
-        example.setDifficulty(exampleCreateDTO.difficulty());
-        example.setCreationDate(LocalDateTime.now());
-
+        Example example = exampleMapper.toEntity(exampleCreateDTO);
+        example.setCreationDate(LocalDateTime.now()); // Asignamos la fecha de creación
         exampleRepository.persist(example);
-
-        return new ExampleResponseDTO(
-                example.getId(), // Aquí ya no necesitamos convertir a String
-                example.getTitle(),
-                example.getDescription(),
-                example.getContent(),
-                example.getCreatorId(),
-                example.getTags(),
-                example.getDifficulty(),
-                example.getCreationDate()
-        );
+        return exampleMapper.toResponseDTO(example);
     }
 
     @Override
     public List<ExampleResponseDTO> listExamples() {
         return exampleRepository.listAll().stream()
-                .map(example -> new ExampleResponseDTO(
-                        example.getId(), // Aquí ya no necesitamos convertir a String
-                        example.getTitle(),
-                        example.getDescription(),
-                        example.getContent(),
-                        example.getCreatorId(),
-                        example.getTags(),
-                        example.getDifficulty(),
-                        example.getCreationDate()
-                ))
+                .map(exampleMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
@@ -63,16 +41,7 @@ public class ExampleServiceImpl implements ExampleService {
     public ExampleResponseDTO getExampleById(Long id) {
         Example example = exampleRepository.findById(id);
         if (example != null) {
-            return new ExampleResponseDTO(
-                    example.getId(), // Aquí ya no necesitamos convertir a String
-                    example.getTitle(),
-                    example.getDescription(),
-                    example.getContent(),
-                    example.getCreatorId(),
-                    example.getTags(),
-                    example.getDifficulty(),
-                    example.getCreationDate()
-            );
+            return exampleMapper.toResponseDTO(example);
         }
         return null;
     }
@@ -90,16 +59,7 @@ public class ExampleServiceImpl implements ExampleService {
 
             exampleRepository.persist(example);
 
-            return new ExampleResponseDTO(
-                    example.getId(), // Aquí ya no necesitamos convertir a String
-                    example.getTitle(),
-                    example.getDescription(),
-                    example.getContent(),
-                    example.getCreatorId(),
-                    example.getTags(),
-                    example.getDifficulty(),
-                    example.getCreationDate()
-            );
+            return exampleMapper.toResponseDTO(example);
         }
         return null;
     }

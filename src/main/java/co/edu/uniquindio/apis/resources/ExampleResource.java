@@ -24,6 +24,7 @@ public class ExampleResource {
         return Response.status(Response.Status.CREATED).entity(exampleResponseDTO).build();
     }
 
+
      /* Example request body (JSON)
     {
         "title": "Example 1",
@@ -36,6 +37,7 @@ public class ExampleResource {
 
     URL: http://localhost:8080/examples
      */
+
 
     @GET
     public List<ExampleResponseDTO> listExamples() {
