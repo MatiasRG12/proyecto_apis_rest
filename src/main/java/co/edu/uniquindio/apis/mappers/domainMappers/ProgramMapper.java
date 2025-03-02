@@ -12,7 +12,7 @@ import org.mapstruct.MappingConstants;
 public interface ProgramMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "creationDate", ignore = true)
     Program parseOf(ProgramCreateDTO programCreateDTO); //convierte de DTO de entrada a Dominio
 
     ProgramResponseDTO toDTO(Program program); //covierte de Dominio a DTO de respuesta

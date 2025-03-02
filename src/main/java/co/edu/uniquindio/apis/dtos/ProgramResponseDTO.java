@@ -6,7 +6,7 @@ import co.edu.uniquindio.apis.model.Comment;
 
 public record ProgramResponseDTO (
 
-        String id,
+        Long id,
         String title,
         String description,
         String content,

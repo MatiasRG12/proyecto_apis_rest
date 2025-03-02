@@ -1,14 +1,18 @@
 package co.edu.uniquindio.apis.dtos;
 
+import co.edu.uniquindio.apis.model.enums.Role;
+import co.edu.uniquindio.apis.model.enums.UserState;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
 public record UserResponseDTO(
 
         @NotBlank(message = "ID cannot be empty")
-        String id,
-        String name,
+        Long id,
+        String fullName,
         @Email(message = "valid email required")
         String email,
-        LocalDate createdAt
+        LocalDate creationDate,
+        UserState state,
+        Role role
 ) {}
